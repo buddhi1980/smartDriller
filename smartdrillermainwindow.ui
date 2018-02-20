@@ -6,29 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>395</height>
+    <width>662</width>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SmartDrillerMainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,0">
     <item>
-     <widget class="QLabel" name="label_answer">
+     <widget class="QLabel" name="label_question">
       <property name="font">
        <font>
-        <pointsize>30</pointsize>
+        <pointsize>20</pointsize>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
       <property name="text">
-       <string>Answer</string>
+       <string>Question</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_answer">
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
       </property>
      </widget>
     </item>
@@ -38,7 +50,8 @@
        <string>Random question</string>
       </property>
       <property name="icon">
-       <iconset theme="go-next"/>
+       <iconset theme="go-next">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
@@ -50,7 +63,8 @@
          <string>Add new question</string>
         </property>
         <property name="icon">
-         <iconset theme="document-new"/>
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -60,7 +74,8 @@
          <string>Delete actual question</string>
         </property>
         <property name="icon">
-         <iconset theme="edit-delete"/>
+         <iconset theme="edit-delete">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -70,7 +85,8 @@
          <string>Correct previous question</string>
         </property>
         <property name="icon">
-         <iconset theme="tools-check-spelling"/>
+         <iconset theme="tools-check-spelling">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -83,7 +99,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>664</width>
+     <width>662</width>
      <height>23</height>
     </rect>
    </property>
@@ -107,18 +123,20 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionReset_statistics">
    <property name="icon">
-    <iconset theme="entry-delete"/>
+    <iconset theme="entry-delete">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Reset statistics</string>
+    <string>&amp;Reset statistics</string>
    </property>
   </action>
   <action name="actionSelect_file_with_quastions">
    <property name="icon">
-    <iconset theme="document-open-data"/>
+    <iconset theme="document-open-data">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Select file with questions...</string>
+    <string>&amp;Select file with questions...</string>
    </property>
   </action>
  </widget>

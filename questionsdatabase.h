@@ -4,27 +4,30 @@
 #include <QList>
 #include <QString>
 
-class QuestionsDatabase
+class QuestionsDatabase : QObject
 {
-
-private:
-  struct sRecord
-  {
-    QString question;
-    QString answer;
-    int repeatPeriod;
-    int goodAnswers;
-    int badAnswers;
-    bool lastGood;
-  };
+	Q_OBJECT
 
 public:
-  QuestionsDatabase();
+	struct sQuestionData
+	{
+		QString question;
+		QString answer;
+		int repeatPeriod;
+		int goodAnswers;
+		int badAnswers;
+		bool lastGood;
+	};
 
-  void LoadDatabase(const QString &filename);
+public:
+	QuestionsDatabase(QObject *parent = nullptr);
+
+	void LoadDatabase(const QString &filename);
+	int GetNumberOfQuestions() const { return data.length(); }
+	const sQuestionData &GetQuestion(int index) const;
 
 private:
-  QList<sRecord> data;
+	QList<sQuestionData> data;
 };
 
 #endif // QUSTIONSDATABASE_H
