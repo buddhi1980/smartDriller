@@ -30,7 +30,7 @@ SOURCES += \
 
 HEADERS += \
         smartdrillermainwindow.h \
-    qustionsdatabase.h
+    questionsdatabase.h
 
 FORMS += \
         smartdrillermainwindow.ui

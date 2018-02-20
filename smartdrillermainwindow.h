@@ -21,6 +21,8 @@ private slots:
   void on_pushButton_random_question_clicked();
 
 private:
+  void CreateDefaultDatabase();
+
   Ui::SmartDrillerMainWindow *ui;
   QuestionsDatabase *database;
   QString databaseFileName;
