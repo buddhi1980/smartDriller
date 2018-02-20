@@ -2,10 +2,10 @@
 #define QUSTIONSDATABASE_H
 
 
-class QustionsDatabase
+class QuestionsDatabase
 {
 public:
-  QustionsDatabase();
+  QuestionsDatabase();
 };
 
 #endif // QUSTIONSDATABASE_H

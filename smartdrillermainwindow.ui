@@ -1,24 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>SmartDrillerMainWindow</class>
- <widget class="QMainWindow" name="SmartDrillerMainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="SmartDrillerMainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>664</width>
+    <height>395</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>SmartDrillerMainWindow</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0">
+    <item>
+     <widget class="QLabel" name="label_answer">
+      <property name="font">
+       <font>
+        <pointsize>30</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Answer</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_random_question">
+      <property name="text">
+       <string>Random question</string>
+      </property>
+      <property name="icon">
+       <iconset theme="go-next"/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton_add_question">
+        <property name="text">
+         <string>Add new question</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_delete_question">
+        <property name="text">
+         <string>Delete actual question</string>
+        </property>
+        <property name="icon">
+         <iconset theme="edit-delete"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_correct_question">
+        <property name="text">
+         <string>Correct previous question</string>
+        </property>
+        <property name="icon">
+         <iconset theme="tools-check-spelling"/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>664</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatabase">
+    <property name="title">
+     <string>Database</string>
+    </property>
+    <addaction name="actionReset_statistics"/>
+    <addaction name="actionSelect_file_with_quastions"/>
+   </widget>
+   <addaction name="menuDatabase"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionReset_statistics">
+   <property name="icon">
+    <iconset theme="entry-delete"/>
+   </property>
+   <property name="text">
+    <string>Reset statistics</string>
+   </property>
+  </action>
+  <action name="actionSelect_file_with_quastions">
+   <property name="icon">
+    <iconset theme="document-open-data"/>
+   </property>
+   <property name="text">
+    <string>Select file with questions...</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

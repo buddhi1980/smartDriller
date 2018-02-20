@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        smartdrillermainwindow.cpp
+        smartdrillermainwindow.cpp \
+    questionsdatabase.cpp
 
 HEADERS += \
-        smartdrillermainwindow.h
+        smartdrillermainwindow.h \
+    qustionsdatabase.h
 
 FORMS += \
         smartdrillermainwindow.ui

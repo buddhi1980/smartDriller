@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class QuestionsDatabase;
+
 namespace Ui {
   class SmartDrillerMainWindow;
 }
@@ -15,8 +17,13 @@ public:
   explicit SmartDrillerMainWindow(QWidget *parent = 0);
   ~SmartDrillerMainWindow();
 
+private slots:
+  void on_pushButton_random_question_clicked();
+
 private:
   Ui::SmartDrillerMainWindow *ui;
+  QuestionsDatabase *database;
+  QString databaseFileName;
 };
 
 #endif // SMARTDRILLERMAINWINDOW_H

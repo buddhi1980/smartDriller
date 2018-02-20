@@ -1,6 +1,6 @@
 #include "qustionsdatabase.h"
 
-QustionsDatabase::QustionsDatabase()
+QuestionsDatabase::QuestionsDatabase()
 {
 
 }
