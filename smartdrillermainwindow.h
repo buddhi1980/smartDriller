@@ -23,9 +23,12 @@ private slots:
 
 	void on_lineEdit_answer_returnPressed();
 
+	void on_pushButton_add_question_clicked();
+
 private:
 	void CreateDefaultDatabase();
 	void SelectRandomQuestion();
+	void NextQuestion();
 
 	Ui::SmartDrillerMainWindow *ui;
 	QuestionsDatabase *database;

@@ -1,5 +1,5 @@
-#ifndef QUSTIONSDATABASE_H
-#define QUSTIONSDATABASE_H
+#ifndef QUESTIONSDATABASE_H
+#define QUESTIONSDATABASE_H
 
 #include <QList>
 #include <QString>
@@ -25,9 +25,12 @@ public:
 	void LoadDatabase(const QString &filename);
 	int GetNumberOfQuestions() const { return data.length(); }
 	const sQuestionData &GetQuestion(int index) const;
+	void AddQuestion(const sQuestionData &record);
 
 private:
+	QString databaseFileName;
+	void SaveDatabase();
 	QList<sQuestionData> data;
 };
 
-#endif // QUSTIONSDATABASE_H
+#endif // QUESTIONSDATABASE_H
