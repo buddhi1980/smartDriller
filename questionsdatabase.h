@@ -26,6 +26,7 @@ public:
 	int GetNumberOfQuestions() const { return data.length(); }
 	const sQuestionData &GetQuestion(int index) const;
 	void AddQuestion(const sQuestionData &record);
+	void UpdateQuestion(const sQuestionData &record, int index);
 
 private:
 	QString databaseFileName;

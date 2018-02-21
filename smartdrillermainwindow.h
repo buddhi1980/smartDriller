@@ -29,6 +29,7 @@ private:
 	void CreateDefaultDatabase();
 	void SelectRandomQuestion();
 	void NextQuestion();
+	void UpdateStatistics();
 
 	Ui::SmartDrillerMainWindow *ui;
 	QuestionsDatabase *database;

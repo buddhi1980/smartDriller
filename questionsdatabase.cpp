@@ -72,6 +72,15 @@ void QuestionsDatabase::AddQuestion(const QuestionsDatabase::sQuestionData &reco
 	SaveDatabase();
 }
 
+void QuestionsDatabase::UpdateQuestion(const QuestionsDatabase::sQuestionData &record, int index)
+{
+	if (index < data.length())
+	{
+		data[index] = record;
+		SaveDatabase();
+	}
+}
+
 void QuestionsDatabase::SaveDatabase()
 {
 

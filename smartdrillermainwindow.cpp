@@ -110,10 +110,38 @@ void SmartDrillerMainWindow::NextQuestion()
 	ui->lineEdit_answer->clear();
 }
 
+void SmartDrillerMainWindow::UpdateStatistics()
+{
+	int count = database->GetNumberOfQuestions();
+	int score = 0;
+	int good = 0;
+	int bad = 0;
+	int learnedCount = 0;
+
+	QuestionsDatabase::sQuestionData record;
+	for (int i = 0; i < count; i++)
+	{
+		record = database->GetQuestion(i);
+		score += record.repeatPeriod - 1;
+		good += record.goodAnswers;
+		bad += record.badAnswers;
+		if (record.lastGood) learnedCount++;
+	}
+	double percent = double(good) / (good + bad) * 100.0;
+	double learned = double(learnedCount) / count * 100.0;
+
+	QString summaryString = tr("%%1 total good answers, %%2 already learned sentences, score: %3")
+														.arg(percent, 0, 'g', 4)
+														.arg(learned, 0, 'g', 4)
+														.arg(score);
+	statusBar()->showMessage(summaryString);
+}
+
 void SmartDrillerMainWindow::on_lineEdit_answer_returnPressed()
 {
 	QString answerEntered = ui->lineEdit_answer->text();
-	QString correctAnswer = database->GetQuestion(actualQuestionIndex).answer;
+	QuestionsDatabase::sQuestionData record = database->GetQuestion(actualQuestionIndex);
+	QString correctAnswer = record.answer;
 
 	// compare and count wrong letters
 	int differentLetters = 0;
@@ -133,23 +161,39 @@ void SmartDrillerMainWindow::on_lineEdit_answer_returnPressed()
 	if (differentLetters == 0)
 	{
 		resultText = tr("Correct answer!");
+		record.goodAnswers++;
+		record.repeatPeriod = record.repeatPeriod * 1.5 + 1.0;
+		record.lastGood = true;
 	}
 	else if (differentLetters == 1)
 	{
 		resultText = tr("Wrong, but you were so close");
+		record.badAnswers++;
+		record.repeatPeriod /= 1;
+		record.lastGood = false;
 	}
 	else if (differentLetters == 2)
 	{
 		resultText = tr("Wrong. Your answer was quite similar");
+		record.badAnswers++;
+		record.repeatPeriod /= 1.5;
+		record.lastGood = false;
 	}
 	else if (differentLetters == 3)
 	{
 		resultText = tr("Wrong. Your answer was too different");
+		record.badAnswers++;
+		record.repeatPeriod /= 2;
+		record.lastGood = false;
 	}
 	else if (differentLetters > 3)
 	{
-		resultText = tr("Wrong. Your answer was totally wrong");
+		resultText = tr("Wrong. Your answer was totally bad");
+		record.badAnswers++;
+		record.repeatPeriod /= 3;
+		record.lastGood = false;
 	}
+	if (record.repeatPeriod < 1) record.repeatPeriod = 1;
 
 	ui->label_result->setText(resultText);
 	if (differentLetters > 0)
@@ -161,6 +205,8 @@ void SmartDrillerMainWindow::on_lineEdit_answer_returnPressed()
 		ui->label_correct_answer->setText("");
 	}
 
+	database->UpdateQuestion(record, actualQuestionIndex);
+	UpdateStatistics();
 	NextQuestion();
 }
 
