@@ -22,6 +22,11 @@ SmartDrillerMainWindow::SmartDrillerMainWindow(QWidget *parent)
 
 	actualQuestionIndex = -1;
 	lastQuestionIndex = -1;
+
+	if (database->GetNumberOfQuestions() > 2)
+	{
+		NextQuestion();
+	}
 }
 
 SmartDrillerMainWindow::~SmartDrillerMainWindow()
@@ -92,15 +97,15 @@ void SmartDrillerMainWindow::NextQuestion()
 	ui->label_question->setText(record.question);
 
 	QColor color(Qt::black);
-	if (record.repeatPeriod == 1)
+	if (record.repeatPeriod < 10)
 		color = QColor(255, 0, 0);
-	else if (record.repeatPeriod < 4)
+	else if (record.repeatPeriod < 40)
 		color = QColor(255, 100, 0);
-	else if (record.repeatPeriod < 8)
+	else if (record.repeatPeriod < 80)
 		color = QColor(255, 255, 0);
-	else if (record.repeatPeriod < 16)
+	else if (record.repeatPeriod < 160)
 		color = QColor(255, 255, 255);
-	else if (record.repeatPeriod < 32)
+	else if (record.repeatPeriod < 320)
 		color = QColor(0, 255, 0);
 
 	QPalette palette = ui->label_question->palette();
@@ -130,10 +135,10 @@ void SmartDrillerMainWindow::UpdateStatistics()
 	double percent = double(good) / (good + bad) * 100.0;
 	double learned = double(learnedCount) / count * 100.0;
 
-	QString summaryString = tr("%%1 total good answers, %%2 already learned sentences, score: %3")
+	QString summaryString = tr("%1% total good answers, %2% already learned sentences, score: %3")
 														.arg(percent, 0, 'g', 4)
 														.arg(learned, 0, 'g', 4)
-														.arg(score);
+														.arg(score / 10);
 	statusBar()->showMessage(summaryString);
 }
 
@@ -228,7 +233,7 @@ void SmartDrillerMainWindow::on_pushButton_add_question_clicked()
 			record.badAnswers = 0;
 			record.goodAnswers = 0;
 			record.lastGood = false;
-			record.repeatPeriod = 1;
+			record.repeatPeriod = 10;
 			database->AddQuestion(record);
 			statusBar()->showMessage(tr("Added question #%1").arg(database->GetNumberOfQuestions()));
 		}
